@@ -66,7 +66,9 @@ public class CurriculumServiceImpl implements ICurriculumService {
 //                System.out.println("path=" + file.getPath());
 //                System.out.println("absolutepath=" + file.getAbsolutePath());
 //                System.out.println("name=" + file.getName());
-                absolutPathList.add(file.getAbsolutePath()+"\\"+file.getName());
+                if (file.getName().substring(file.getName().lastIndexOf(".") + 1) == "json"){
+                    absolutPathList.add(file.getAbsolutePath()+"\\"+file.getName());
+                }
             } else if (file.isDirectory()) {
 //                System.out.println("文件夹");
                 String[] fileList = file.list();
@@ -77,7 +79,9 @@ public class CurriculumServiceImpl implements ICurriculumService {
 //                        System.out.println("absolutepath="
 //                                + readFile.getAbsolutePath());
 //                        System.out.println("name=" + readFile.getName());
-                        absolutPathList.add(file.getAbsolutePath()+"\\"+readFile.getName());
+                        if (readFile.getName().substring(readFile.getName().lastIndexOf(".") + 1).equals("json")){
+                            absolutPathList.add(file.getAbsolutePath()+"\\"+readFile.getName());
+                        }
                     } else if (readFile.isDirectory()) {
                         getFileAbsolutPathList(filepath + "\\" + fileList[i] , absolutPathList);
                     }
